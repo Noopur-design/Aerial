@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AERIAL — luxury fashion storefront
 
-## Getting Started
+A complete, responsive e-commerce front end for **AERIAL**, a contemporary luxury fashion house. It's built with Next.js 16 (App Router), React 19, Tailwind CSS v4, GSAP + ScrollTrigger, Zustand and the React Bits `OptionWheel` and `FlexCarousel` components.
 
-First, run the development server:
+> **Demo store.** No backend, auth provider or payment gateway is connected. The cart, wishlist, demo account, saved addresses and orders live in the visitor's browser (`localStorage`). The checkout never collects card or bank details and never takes payment. Contact details in `data/site.js` are placeholder data.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm run start      # serve the production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Requires Node 20.9+.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Route | Page |
+| --- | --- |
+| `/` | Homepage: campaign hero, OptionWheel category picker, FlexCarousel lookbook |
+| `/shop` | Shop All, with working filters, sorting and pagination |
+| `/new-arrivals` | New Arrivals |
+| `/women`, `/men` | Gender landing pages with category tiles and filters |
+| `/collections` | Collections index |
+| `/collections/[slug]` | Collection detail (merges both Autumn Edit designs): Essentials, Autumn Edit, Contemporary Classics, Evening Wear |
+| `/products/[slug]` | Product detail: gallery, colour/size/quantity, size guide, accordions, related and recently viewed |
+| `/search?q=` | Search with suggestions, type-ahead, "did you mean", filters and an empty state |
+| `/cart` | Shopping bag |
+| `/checkout` | Validated demo checkout |
+| `/order-confirmation` | Confirmation (shown only after a completed checkout) |
+| `/wishlist` | Wishlist |
+| `/about` | Brand story, philosophy, sustainability, timeline |
+| `/lookbook` | Seasonal lookbooks, FlexCarousel, full-screen viewer |
+| `/journal`, `/journal/[slug]` | Journal and articles |
+| `/contact` | Contact form with validation |
+| `/account` | Demo sign-in / create account and member dashboard |
+| `/help` | FAQ, shipping and returns, with searchable accessible accordions |
+| `/track-order` | Order tracking demo (try `AE458721` / `noopur@example.com`) |
+| `/legal/privacy`, `/legal/terms` | Legal pages |
 
-## Learn More
+## Demo data
 
-To learn more about Next.js, take a look at the following resources:
+- **Discount codes:** `AERIAL10` (10% off), `WELCOME15` (15% off), `FREESHIP` (free express shipping)
+- **Shipping:** free standard delivery on orders over ₹2,999 (otherwise ₹99); express costs ₹249; Cash on Delivery adds ₹49
+- **Account:** any email with a password of 6+ characters signs you in locally
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/          routes, layouts, template.js (page transitions + scroll animations)
+components/
+  layout/     Header, MegaMenu, MobileNav, Footer, Providers
+  ui/         Button, Media, Drawer, Modal, Accordion, Newsletter, Toast, Breadcrumbs, …
+  product/    ProductCard, ProductGrid, ProductListing, FilterSidebar, SortSelect, ProductGallery, …
+  cart/       CartDrawer, CartLine, SummaryRows, DiscountForm
+  checkout/   CheckoutView, ConfirmationView
+  account/    SignIn, Dashboard, TrackOrderView
+  home/       HomeHero (OptionWheel), FeaturedPieces, CampaignCarousel (FlexCarousel)
+  reactbits/  OptionWheel + FlexCarousel (React Bits source, unmodified)
+data/         products, collections, journal, FAQs, lookbooks, site config: the single source of truth
+store/        Zustand store with localStorage persistence
+hooks/        UI hooks (scroll lock, focus trap, escape, media query)
+lib/          pricing, search, orders, formatting, GSAP motion system
+styles/       globals.css (design tokens), animations.css
+public/images campaign, editorial, product and category imagery
+```
 
-## Deploy on Vercel
+## Animation system
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`lib/motion.js` wires declarative attributes to GSAP/ScrollTrigger:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `data-reveal`: fade and rise into view
+- `data-reveal-stagger`: staggered children
+- `data-reveal-img`: clip-path image reveal
+- `data-parallax`: subtle parallax
+- `data-split`: line-by-line headline reveal
+
+`app/template.js` runs these on every navigation and adds the page fade. Every timeline is reverted on unmount. With `prefers-reduced-motion`, animations are skipped and content shows immediately.
+
+## Imagery
+
+The photography in `public/images` is sourced from [Unsplash](https://unsplash.com) under the [Unsplash License](https://unsplash.com/license) (free for commercial use). Each file is credited to its photographer in [`CREDITS.md`](CREDITS.md). Swap in your own campaign and product photography before launch; paths are referenced from `data/*.js` and a few page files.

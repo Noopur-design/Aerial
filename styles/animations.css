@@ -1,0 +1,103 @@
+/* ------------------------------------------------------------------
+   Animation helpers
+   Elements marked for GSAP reveals are hidden only when JS is running
+   (html.js) and motion is allowed, so content is never lost without JS.
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal],
+  html.js [data-reveal-stagger] > *,
+  html.js [data-split] .split-line-inner {
+    visibility: hidden;
+  }
+
+  html.js [data-reveal-img] {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  html.js [data-hero-line] {
+    transform: translateY(110%);
+  }
+
+  html.js [data-hero-fade] {
+    visibility: hidden;
+  }
+}
+
+.split-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.split-line-inner {
+  display: block;
+  will-change: transform;
+}
+
+/* arrow nudge used by all CTAs */
+.arrow-nudge svg {
+  transition: transform 0.45s var(--ease-luxe);
+}
+
+.arrow-nudge:hover svg,
+.group:hover .arrow-nudge svg {
+  transform: translateX(5px);
+}
+
+/* restrained product image zoom */
+.zoom-img img {
+  transition: transform 1.2s var(--ease-luxe), opacity 0.6s ease;
+}
+
+.group:hover .zoom-img img {
+  transform: scale(1.045);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast-enter {
+  animation: toast-in 0.45s var(--ease-luxe) both;
+}
+
+@keyframes draw-check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ring-grow {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
