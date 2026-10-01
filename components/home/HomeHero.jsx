@@ -75,16 +75,16 @@ function CategoryWheel() {
             items={WHEEL.map((w) => w.label)}
             defaultSelected={3}
             onChange={(i) => setIndex(i)}
-            textColor="rgba(26, 26, 24, 0.4)"
+            textColor="rgba(26, 26, 24, 0.72)"
             activeColor="#1a1a18"
             side="right"
             fontSize={1.45}
             spacing={1.75}
             curve={1}
             tilt={9}
-            blur={1.2}
-            fade={0.2}
-            minOpacity={0.12}
+            blur={0.5}
+            fade={0.14}
+            minOpacity={0.5}
             smoothing={220}
             inset={28}
             loop={false}

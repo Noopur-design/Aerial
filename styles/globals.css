@@ -311,10 +311,16 @@ img {
 .home-wheel .option-wheel__item {
   font-family: var(--font-editorial);
   letter-spacing: 0.01em;
+  font-weight: 500;
 }
 
+/* The centred option is bold and underscored so it reads as the active choice. */
 .home-wheel .option-wheel__item--selected {
-  font-weight: 400;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  text-decoration-color: color-mix(in srgb, var(--color-charcoal) 45%, transparent);
 }
 
 .brand-carousel .flex-carousel__title {
