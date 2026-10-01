@@ -1,0 +1,8 @@
+:HL["/Aerial/_next/static/chunks/37m2lbpfz4xpu.css","style"]
+:HL["/Aerial/_next/static/media/02f8c82079ee3c71-s.p.0wv_63afy57i_.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Aerial/_next/static/media/2d85136c4a70e605-s.p.1sk091212cwhe.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Aerial/_next/static/media/52b5d5098cb87ddd-s.p.3r2y_bth_sjsm.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Aerial/_next/static/media/68019c21ced96fa9-s.p.0mhosx07nwlp0.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Aerial/_next/static/media/9e400763522556e5-s.p.40m0sdlh8l0dz.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Aerial/_next/static/media/f06bf9da926bae75-s.p.2874ccu1_u7jf.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"products","param":null,"prefetchHints":4192,"slots":{"children":{"name":"slug","param":{"type":"d","key":"linen-shirt","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"QU6n68eR7_Q-2aHpS6Q8e"}
